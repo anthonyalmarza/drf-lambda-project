@@ -1,0 +1,23 @@
+version: '3.7'
+
+volumes:
+    CHANGE_ME_postgres_data: {}
+
+services:
+    mailhog:
+        image: mailhog/mailhog:v1.0.0
+        ports:
+            - published: 7777
+              target: 8025
+              protocol: tcp
+
+    postgres:
+        image: mdillon/postgis:11
+        volumes:
+            - CHANGE_ME_postgres_data:/var/lib/postgresql/data
+        env_file:
+            - dev/dev.env
+        ports:
+            - published: 5433
+              target: 5432
+              protocol: tcp

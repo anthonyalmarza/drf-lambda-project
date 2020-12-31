@@ -1,0 +1,16 @@
+[flake8]
+;https://pep257.readthedocs.io/en/latest/error_codes.html  Doc Errors
+;https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes Code Errors
+;https://flake8.pycqa.org/en/latest/user/error-codes.html Flake8 Errors
+ignore = D203,W504,W503,E231
+exclude =
+    .git,
+    __pycache__,
+    old,
+    build,
+    dist,
+    .pytest_cache,
+    .github,cdk.out,
+    .venv,
+    venv
+max-complexity = 10
