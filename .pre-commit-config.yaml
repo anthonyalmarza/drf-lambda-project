@@ -25,10 +25,6 @@ repos:
     hooks:
       - id: flake8
         args: ["--count", "--statistics"]
-  - repo: https://github.com/asottile/dead
-    rev: v1.3.0
-    hooks:
-      - id: dead
   - repo: https://github.com/asottile/blacken-docs
     rev: v1.9.1
     hooks:

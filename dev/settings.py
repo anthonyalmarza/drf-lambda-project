@@ -36,5 +36,4 @@ DEBUG_TOOLBAR_CONFIG = {
 # https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration
 INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
-
 COMPRESS_OFFLINE = False
