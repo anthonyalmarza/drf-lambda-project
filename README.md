@@ -38,3 +38,13 @@ Install pre-commit hooks:
 ### Running Tests:
 
 `poetry run tests`
+
+### Running Django Commands:
+
+`poetry run manage makemigrations`
+
+`poetry run manage migrate`
+
+### Running a local server
+
+`poetry run server`
