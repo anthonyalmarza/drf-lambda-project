@@ -51,6 +51,12 @@ django-debug-toolbar = "^3.2"
 django-extensions = "^3.1.0"
 click = "^7.1.2"
 django-test-migrations = "^1.1.0"
+Sphinx = "^3.4.1"
+sphinx-sitemap = "^2.2.0"
+sphinx-pyreverse = "^0.0.13"
+sphinx-autodoc-typehints = "^1.11.1"
+sphinx-autobuild = "^2020.9.1"
+recommonmark = "^0.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -60,6 +66,8 @@ build-backend = "poetry.core.masonry.api"
 tests = "scripts.tests:main"
 server = "scripts.server:main"
 manage = "scripts.manage:main"
+docs-autobuild = "scripts.docs_autobuild:main"
+docs-build = "scripts.docs_build:main"
 
 [tool.coverage.run]
 source = [
@@ -79,12 +87,13 @@ omit = [
 ]
 skip_empty = true
 show_missing = true
-#fail_under = 70
+fail_under = 70
 
 [tool.black]
 line-length = 79
 
 [tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
 addopts = "-s"
 python_files = [
     "test_*.py",

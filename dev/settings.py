@@ -1,5 +1,5 @@
 # type: ignore
-import socket
+# import socket
 from CHANGE_ME.settings import *  # noqa
 
 DEBUG = True
@@ -15,8 +15,9 @@ ROOT_URLCONF = env("ROOT_URLCONF", default="dev.urls")  # noqa: F405
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
-hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+# hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+# INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+INTERNAL_IPS = ["127.0.0.1"]
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#prerequisites
 INSTALLED_APPS += ["debug_toolbar"]  # noqa F405
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#middleware
