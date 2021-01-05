@@ -24,10 +24,7 @@ def update_site_backward(apps, schema_editor):
     Site = apps.get_model("sites", "Site")
     Site.objects.update_or_create(
         id=settings.SITE_ID,
-        defaults={
-            "domain": "example.com",
-            "name": "example.com"
-        },
+        defaults={"domain": "example.com", "name": "example.com"},
     )
 
 

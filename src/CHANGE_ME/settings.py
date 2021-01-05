@@ -1,6 +1,6 @@
 import environ
 
-from acrul_toolkit.secretsmanager import get_secret
+from acrul_toolkit.secrets import secrets
 
 env = environ.Env()
 
@@ -9,7 +9,7 @@ STAGE = env("STAGE", default="local")
 # <project root>/CHANGE_ME/project/settings.py - 2 => <project root>/CHANGE_ME (/var/task/CHANGE_ME)  # noqa
 ROOT_DIR = environ.Path(__file__) - 1
 
-SECRET_KEY = env("SECRET_KEY", default=None) or get_secret(
+SECRET_KEY = env("SECRET_KEY", default=None) or secrets.get_secret(
     env("SECRET_KEY_ID")
 )
 DEFAULT_ADMIN_EMAIL = env(
@@ -17,7 +17,7 @@ DEFAULT_ADMIN_EMAIL = env(
 )
 DEFAULT_ADMIN_PASSWORD = env(
     "DEFAULT_ADMIN_PASSWORD", default=None
-) or get_secret(env("DEFAULT_ADMIN_PASSWORD_ID"))
+) or secrets.get_secret(env("DEFAULT_ADMIN_PASSWORD_ID"))
 
 DEBUG = env.bool("DEBUG", default=False)
 AUTH_USER_MODEL = "auth.User"
@@ -149,7 +149,7 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 POSTGRES_USER = env("DB_USERNAME")
-POSTGRES_PASSWORD = env("DB_PASSWORD", default=None) or get_secret(
+POSTGRES_PASSWORD = env("DB_PASSWORD", default=None) or secrets.get_secret(
     env("DB_SECRET_ID"), key="password"
 )
 POSTGRES_DB = env("DB_NAME")
@@ -244,3 +244,14 @@ COMPRESS_ENABLED = env.bool("COMPRESS_ENABLED", default=True)
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
 COMPRESS_URL = STATIC_URL
 COMPRESS_OFFLINE = True
+
+
+# AWS XRAY
+# ------------------------------------------------------------------------------
+INSTALLED_APPS.append("aws_xray_sdk.ext.django")
+MIDDLEWARE.insert(0, "aws_xray_sdk.ext.django.middleware.XRayMiddleware")
+XRAY_RECORDER = {
+    "AUTO_INSTRUMENT": True,
+    "AWS_XRAY_CONTEXT_MISSING": "LOG_ERROR",
+    "AWS_XRAY_TRACING_NAME": f"CHANGE_ME-{STAGE}",
+}

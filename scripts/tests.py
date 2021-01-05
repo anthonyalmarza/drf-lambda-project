@@ -1,4 +1,3 @@
-import subprocess
 import sys
 
 import coverage
@@ -8,13 +7,19 @@ from scripts.load_env import load_env
 
 load_env()
 
-subprocess.run(["docker-compose", "up", "-d"], check=True)
-
 
 def main():
     cov = coverage.Coverage()
     cov.start()
-    pytest.main(sys.argv[1:])
+    status = pytest.main(sys.argv[1:])
+    if status != pytest.ExitCode.OK:
+        sys.exit(status)
     cov.stop()
     cov.save()
-    cov.report()
+    total_coverage = cov.report()
+    if total_coverage < cov.config.fail_under:
+        print(
+            f"Coverage failure: {int(total_coverage)} is less than "
+            f"fail-under={cov.config.fail_under}"
+        )
+        sys.exit(1)

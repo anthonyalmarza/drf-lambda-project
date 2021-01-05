@@ -1,14 +1,6 @@
 name: Test
-
 on:
-  push:
-    paths-ignore:
-      - LICENSE
-      - '**/README.md'
-      - .gitignore
-    tags-ignore:
-      - v*
-
+  push
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,11 +8,11 @@ jobs:
       redis:
         image: redis
         ports:
-          - 6379:3456/tcp
+          - 6379/tcp
       postgres:
-        image: postgres
+        image: mdillon/postgis:11
         ports:
-          - 5432:5433/tcp
+          - 5432/tcp
         env:
           POSTGRES_USER: CHANGE_ME
           POSTGRES_PASSWORD: CHANGE_ME
@@ -65,10 +57,13 @@ jobs:
       #----------------------------------------------
       #              run test suite
       #----------------------------------------------
+      - run: poetry run manage collectstatic --noinput
+      - run: poetry run manage compress --force
       - name: Run Tests
-        run: poetry run coverage run -m pytest
-      - name: Generate Reports
-        run: poetry run coverage report
+        run: poetry run tests
+        env:
+          DB_HOST: 127.0.0.1
+          DB_PORT: ${{ job.services.postgres.ports[5432] }}
       #----------------------------------------------
       #             upload coverage stats
       #----------------------------------------------

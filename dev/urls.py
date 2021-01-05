@@ -7,9 +7,7 @@ from CHANGE_ME.urls import urlpatterns as prod_urlpatterns
 
 
 urlpatterns = (
-    [
-        path("__debug__/", include(debug_toolbar.urls))
-    ]
+    [path("__debug__/", include(debug_toolbar.urls))]
     + prod_urlpatterns
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 )

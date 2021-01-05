@@ -47,12 +47,12 @@ jobs:
       #              Collect Statics
       #----------------------------------------------
       - name: Collect statics
-        run: poetry run src/CHANGE_ME/manage.py collectstatic --noinput
+        run: poetry run src/CHANGE_ME/manage.py collectstatic --noinput --settings=CHANGE_ME.settings
       #----------------------------------------------
       #                 Compress
       #----------------------------------------------
       - name: Compress statics
-        run: poetry run src/CHANGE_ME/manage.py compress
+        run: poetry run src/CHANGE_ME/manage.py compress --force --settings=CHANGE_ME.settings
       #----------------------------------------------
       #                 Requirements
       #----------------------------------------------
@@ -61,8 +61,8 @@ jobs:
       #----------------------------------------------
       #                  deploy
       #----------------------------------------------
-      - uses: quadio-media/acru-l-action@v0.1.4
+      - uses: quadio-media/acru-l-action@v0.1.5
         with:
-          subcommand: deploy --require-approval=never ProductionAPI
+          subcommand: deploy --require-approval=never
         env:
           CONFIG_FILE_PATH: ./.aws/production.toml
