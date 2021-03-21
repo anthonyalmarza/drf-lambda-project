@@ -1,0 +1,11 @@
+{
+    "repo_name": "test_project",
+    "project_title": "{{ cookiecutter.repo_name|replace('_', ' ')|title }}",
+    "project_description": "{{ cookiecutter.project_title|capitalize }}",
+    "project_name": "{{ cookiecutter.repo_name }}",
+    "src_package_name": "{{ cookiecutter.project_name }}",
+    "project_domain": "test.com",
+    "author_name": "Anthony Almarza",
+    "author_email": "anthony.almarza@gmail.com",
+    "github_username": "anthonyalmarza"
+}

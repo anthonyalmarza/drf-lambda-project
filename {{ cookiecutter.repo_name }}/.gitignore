@@ -131,3 +131,6 @@ dmypy.json
 .idea
 cdk.out
 cdk.context.json
+
+src/{{ cookiecutter.src_package_name }}/staticfiles
+src/requirements.txt

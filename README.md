@@ -1,50 +1,55 @@
-# drf-lambda-project
+# DRF AWS Lambda Project Template
 
-Template for Django REST Framework projects built on top of AWS Lambda
+Template for stand-alone Django REST Framework proof-of-concept projects
+targeting a deployment to AWS Lambda + RDS Postgres.
 
+## Getting Started
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+This is a `cookiecutter` template to read more about cookiecutter templates please refer
+to the docs [here][cookiecutter-docs].
 
-[![codecov](https://codecov.io/gh/anthonyalmarza/CHANGE_ME/branch/main/graph/badge.svg?token=JRCC98L3FG)](https://codecov.io/gh/anthonyalmarza/CHANGE_ME)
+### CookieCutter Installation
+It's recommended that you use `pyenv`, which you can read about more [here][pyenv-repo].
 
-![Test](https://github.com/anthonyalmarza/CHANGE_ME/workflows/Test/badge.svg)
-
-## Local Development
-
-### Pyenv
-It's recommended that you use [`pyenv`](https://github.com/pyenv/pyenv)
-
-[pyenv-installer](https://github.com/pyenv/pyenv-installer)
+There is a [pyenv-installer][pyenv-installer] if you want to use that.
 ```bash
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 ```
 
-### Install `poetry`
+Install a version of python, below is an example of how to do this.
 
-This project uses [`poetry`](https://python-poetry.org). Install it using the following command.
-```bash
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+```shell
+pyenv install -s 3.8.6
 ```
-More instructions [here](https://python-poetry.org/docs/#installation)
 
-### Install the dependencies:
+Upgrade pip and install cookiecutter globally,
 
-`poetry install`
+```shell
+pip install --upgrade pip && pip install cookiecutter
+```
 
-Install pre-commit hooks:
 
-`poetry run pre-commit install`
+## Usage
 
-### Running Tests:
+To use this template you can run the following command:
 
-`poetry run tests`
+```shell
+cookiecutter gh:anthonyalmarza/drf-lambda-project
+```
 
-### Running Django Commands:
+### Template Options
 
-`poetry run manage makemigrations`
+- `repo_name` - The name of the base folder for the github repo. e.g. "my-drf-project"
+- `project_title` - The display name for the project e.g. "My DRF Project"
+- `project_description` - The short description for the project e.g. "A test drf project"
+- `project_name` - The name used in the pyproject.toml file name key.
+- `src_package_name` - The package name for the src folder.
+- `project_domain` - The domain name to be used for the project.
+- `author_name` - The author's name.
+- `author_email` - The author's email address.
+- `github_username` - The github username or organization where this project will live.
 
-`poetry run manage migrate`
 
-### Running a local server
-
-`poetry run server`
+[cookiecutter-docs]: https://cookiecutter.readthedocs.io/en/1.7.2/
+[pyenv-repo]: https://github.com/pyenv/pyenv
+[pyenv-installer]: https://github.com/pyenv/pyenv-installer

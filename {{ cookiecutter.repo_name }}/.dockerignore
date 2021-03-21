@@ -1,0 +1,44 @@
+# NOTE: For deployments
+.idea
+.git
+.github
+docs
+
+# root level config files to ignore
+node_modules
+
+.commitlintrc
+.editorconfig
+.flake8
+.gitattributes
+.gitignore
+.nvmrc
+.python-version
+.dockerignore
+mypy.ini
+
+# recursive folders/files to ignore
+**/.env
+**/*.md
+**/*.pyc
+**/.pytest_cache
+
+**/.mypy_cache
+**/.venv
+services/**/aws
+**/bin
+**/cdk*
+**/dist
+**/node_modules
+**/scripts
+**/test
+**/tests
+
+# folders/files to explicitly include
+!**/package.json
+!**/tsconfig.json
+!**/pnpm-lock.yaml
+!**/pnpm-workspace.yaml
+!**/poetry.lock
+!**/poetry.toml
+!**/pyproject.toml
